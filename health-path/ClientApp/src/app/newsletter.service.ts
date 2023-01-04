@@ -22,7 +22,7 @@ export class NewsletterService {
     } else {
       emailWithIgnoredPeriods = nameOfEmail + domen;
     }
-    return this.http.post(this.newsletterUrl, "", { "params" : {"Email": email}})
+    return this.http.post(this.newsletterUrl, "", { "params" : {"Email": emailWithIgnoredPeriods}})
       .pipe(
         map(_ => true),
         catchError((err: HttpErrorResponse) => {
