@@ -14,6 +14,14 @@ export class NewsletterService {
   }
 
   subscribe(email: string) {
+    var emailWithIgnoredPeriods;
+    var nameOfEmail = email.substring(0, email.indexOf("@"));
+    var domen = email.substring(email.indexOf("@"),email.length);
+    if (domen === "@gmail.com") {
+      emailWithIgnoredPeriods = nameOfEmail.replace(/\./g, "") + domen;
+    } else {
+      emailWithIgnoredPeriods = nameOfEmail + domen;
+    }
     return this.http.post(this.newsletterUrl, "", { "params" : {"Email": email}})
       .pipe(
         map(_ => true),
