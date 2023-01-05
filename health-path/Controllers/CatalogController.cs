@@ -111,7 +111,7 @@ public class CatalogController : ControllerBase
     {
         var productRoutes = new ConcurrentDictionary<string, ConcurrentBag<string>>();
 
-        await FetchMany<JsonObject>(
+        await FetchMany<JsonArray>(
             ids.Select(id => $"{_lnhpdBaseUrl}/productroute/?lang=en&id={id}"),
             r => r,
             rec =>
