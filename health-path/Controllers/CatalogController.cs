@@ -113,11 +113,11 @@ public class CatalogController : ControllerBase
 
         await FetchMany<JsonObject>(
             ids.Select(id => $"{_lnhpdBaseUrl}/productroute/?lang=en&id={id}"),
-            r => r.AsArray(),
+            r => r,
             rec =>
             {
                 string key = rec["lnhpd_id"]!.ToString();
-                string value = rec!["route_type_desc"]!.GetValue<string>();
+                string value = rec["route_type_desc"]!.GetValue<string>();
                 ConcurrentBag<string> routes = productRoutes.GetOrAdd(key, _ => new ConcurrentBag<string>());
                 routes.Add(value);
             }
